@@ -1,0 +1,26 @@
+version: "3"
+services:
+  api:
+    container_name: fastapi
+    build: backend
+    command: "uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+    ports:
+      - "8000:8000"
+    networks: #user defined network bridge for all containers
+      - jcnet
+
+  app:
+    container_name: streamlit
+    build: frontend
+    command: "streamlit run script.py --server.port=8501 --server.address=0.0.0.0"
+    ports:
+      - "8501:8501"
+    environment:
+      URL_BACKEND: http://api:8000/predict
+    depends_on:
+      - api
+    networks:
+      - jcnet
+
+networks:
+  jcnet:
