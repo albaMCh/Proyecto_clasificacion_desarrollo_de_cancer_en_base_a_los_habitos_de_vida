@@ -38,8 +38,7 @@ Ha ganado popularidad en la comunidad de Python debido a su facilidad de uso, re
 ## Configuración del proyecto
 
 Clonar este repositorio
-(base)$: git clone git@github.com: albaMCh/ProyectoFinal_ML-FastApi-Streamlit.git
-(base)$: cd ProyectoFinal_ML_FastApi_Streamlit.git
-Ejecutar las aplicaciones
-$ docker-compose up
-Y ve a http://localhost:8501
+1. (base)$: git clone git@github.com: albaMCh/ProyectoFinal_ML-FastApi-Streamlit.git
+2. (base)$: cd ProyectoFinal_ML_FastApi_Streamlit.git
+3. Ejecutar las aplicaciones. $ docker-compose up
+4. Y ve a http://localhost:8501
