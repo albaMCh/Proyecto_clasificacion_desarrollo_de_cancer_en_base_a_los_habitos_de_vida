@@ -1,4 +1,4 @@
-pycaret
-fastapi
-uvicorn
-streamlit
+pycaret == 3.0.2
+fastapi == 0.96.1
+uvicorn == 0.16.0
+streamlit == 1.19.0
