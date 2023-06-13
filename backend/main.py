@@ -10,7 +10,7 @@ from pydantic import create_model
 app = FastAPI()
 
 # Load trained Pipeline
-model = load_model("knn")
+model = load_model("./knn")
 
 # Create input/output pydantic models
 input_model = create_model("knn_input", **{'Patient Id': 'P789', 'Age': 39, 'Gender': 2, 'Air Pollution': 6, 'Alcohol use': 8, 'Dust Allergy': 7, 'OccuPational Hazards': 7, 'Genetic Risk': 7, 'chronic Lung Disease': 6, 'Balanced Diet': 7, 'Obesity': 7, 'Smoking': 8, 'Passive Smoker': 7, 'Chest Pain': 7, 'Coughing of Blood': 9, 'Fatigue': 3, 'Weight Loss': 2, 'Shortness of Breath': 4, 'Wheezing': 1, 'Swallowing Difficulty': 4, 'Clubbing of Finger Nails': 2, 'Frequent Cold': 4, 'Dry Cough': 2, 'Snoring': 3})
