@@ -5,9 +5,14 @@ from pycaret.classification import load_model, predict_model
 from fastapi import FastAPI
 import uvicorn
 from pydantic import create_model
+import sys
+import path
 
 # Create the app
 app = FastAPI()
+
+dir = path.Path(__file__).abspath()
+sys.path.append(dir.parent.parent)
 
 # Load trained Pipeline
 model = load_model("./knn")
