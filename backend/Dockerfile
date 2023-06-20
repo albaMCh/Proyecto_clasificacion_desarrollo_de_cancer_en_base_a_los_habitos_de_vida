@@ -9,7 +9,8 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 EXPOSE 8000
 
-COPY app /code/app
+COPY app/knn.pkl /code/app/knn.pkl
+COPY app/main.py /code/app/main.py
 
 CMD uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 #CMD python app.py 
