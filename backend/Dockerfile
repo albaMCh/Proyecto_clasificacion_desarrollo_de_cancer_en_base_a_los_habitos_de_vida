@@ -1,15 +1,15 @@
 FROM python:3.9-slim
 
-WORKDIR /
+WORKDIR /code
 
-COPY requirements.txt ./requirements.txt
+COPY ./requirements.txt /code/requirements.txt
 
 RUN apt-get update && apt-get install -y libgomp1 gcc python3-dev
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 EXPOSE 8000
 
-COPY . /app
+COPY . /code/app
 
 CMD uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 #CMD python app.py 
