@@ -9,7 +9,7 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 EXPOSE 8000
 
-COPY . /code/app
+COPY ./app /code/app
 
 CMD uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 #CMD python app.py 
