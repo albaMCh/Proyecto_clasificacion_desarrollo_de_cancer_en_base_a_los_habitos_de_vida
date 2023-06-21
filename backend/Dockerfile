@@ -1,10 +1,15 @@
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
+FROM python:3.9-slim
 
-COPY ./requirements.txt /app/requirements.txt
+WORKDIR /
 
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+COPY requirements.txt ./requirements.txt
 
-COPY ./app /app/app
+RUN apt-get update && apt-get install -y libgomp1 gcc python3-dev
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+EXPOSE 8000
+
+COPY . /app
 
 CMD uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 #CMD python app.py 
