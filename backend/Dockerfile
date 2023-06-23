@@ -11,6 +11,6 @@ EXPOSE 8000
 
 COPY . /app
 
-CMD uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+CMD uvicorn app.main:app --host 0.0.0.0 --port 8000
 #CMD python app.py 
 #the --port(8000) must match with the EXPOSE port above(8000)
