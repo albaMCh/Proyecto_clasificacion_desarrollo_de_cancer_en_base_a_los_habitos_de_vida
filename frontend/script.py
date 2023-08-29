@@ -3,13 +3,18 @@ import requests
 import os
 import streamlit as st
 import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 def classify_person(data):
     """
     Sends a request to the backend with the image data
     to perform a classification on the image.
     """
     # Retrieve the URL of the backend from the environment variables
-    url_backend = os.environ["URL_BACKEND"]
+    #url_backend = os.environ["URL_BACKEND"]
+
+    url_backend = 'https://fastapi-yefgqxi25a-uc.a.run.app/predict'
     
     # Send a GET request to the backend with the image data as a JSON payload
     request = requests.post(url_backend, json=data)
@@ -148,6 +153,30 @@ def main():
 
         elif result == 'High':
             st.error('La probabilidad de desarrollar cáncer es alta. Le recomendamos mejorar ciertos hábitos de vida para reducirlo, como por ejemplo reducir el consumo de alcohol y tabaco, realizar ejercicio físico y llevar unos habitos de alimentación saludables, reducir el consumo de ultraprocesados y comida basura, reducir en la medida de lo posible su peso, y si presenta algun problema de salud hablar con su médico')
+
+
+        if result != None:
+            st.info('Como puedes ver en el gráfico se muestran los hábitos que más nos puede afectar a la hora de desarrollar cáncer como son: la obesidad, el tabaco, el ser fumador pasivo, no llevar una dieta equilibrada, el consumo de alcohol, entre otras por lo que recomendamos cambiar si tienes algunos de estos hábitos. Un dato muy significativo es la mayor relevancia que tiene por ejemplo la obesidad frente al tabaco y aunque parezca contradictorio es así, hoy en día y si se mantienen estos hábitos de vida, la obesidad aumenta de manera considerable los casos de cáncer frente al tabaco.')
+
+            df = pd.read_excel('cancer_patient_data_sets.xlsx')
+            df.head()
+            from sklearn.feature_selection import SelectKBest #Feature Selector
+            from sklearn.feature_selection import f_classif #F-ratio statistic for categorical values
+            #Feature Selection
+            X=df.drop(['Level','Patient Id'], axis=1)
+            Y=df['Level']
+            bestfeatures = SelectKBest(score_func=f_classif, k='all')
+            fit = bestfeatures.fit(X,Y)
+            dfscores = pd.DataFrame(fit.scores_)
+            dfcolumns = pd.DataFrame(X.columns)
+            #concat two dataframes for better visualization
+            featureScores = pd.concat([dfcolumns,dfscores],axis=1)
+            featureScores.columns = ['Feature','Score']  #naming the dataframe columns
+
+            #Visualize the feature scores
+            fig, ax=plt.subplots(figsize=(7,7))
+            plot=sns.barplot(data=featureScores, x='Score', y='Feature', palette='viridis',linewidth=0.5, saturation=2, orient='h')
+            st.pyplot(fig)
 
 
 
