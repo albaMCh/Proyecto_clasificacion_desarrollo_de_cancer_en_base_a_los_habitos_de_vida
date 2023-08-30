@@ -6,6 +6,8 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from pathlib import Path
+
 def classify_person(data):
     """
     Sends a request to the backend with the image data
@@ -30,6 +32,8 @@ def classify_person(data):
      
 
 def main():
+    excel_path = Path(__file__).parents[0] / 'cancer_patient_data_sets.xlsx'
+
     st.set_page_config(page_title="Test predicción desarrollo de Cáncer")
     st.title("Test predictivo de desarrollo de cáncer basado en ciertos habitos de vida")
 
@@ -158,7 +162,7 @@ def main():
         if result != None:
             st.info('Como puedes ver en el gráfico se muestran los hábitos que más nos puede afectar a la hora de desarrollar cáncer como son: la obesidad, el tabaco, el ser fumador pasivo, no llevar una dieta equilibrada, el consumo de alcohol, entre otras por lo que recomendamos cambiar si tienes algunos de estos hábitos. Un dato muy significativo es la mayor relevancia que tiene por ejemplo la obesidad frente al tabaco y aunque parezca contradictorio es así, hoy en día y si se mantienen estos hábitos de vida, la obesidad aumenta de manera considerable los casos de cáncer frente al tabaco.')
 
-            df = pd.read_excel('cancer_patient_data_sets.xlsx')
+            df = pd.read_excel(excel_path)
             df.head()
             from sklearn.feature_selection import SelectKBest #Feature Selector
             from sklearn.feature_selection import f_classif #F-ratio statistic for categorical values
