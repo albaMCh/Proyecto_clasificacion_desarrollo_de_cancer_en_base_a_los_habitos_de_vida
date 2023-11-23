@@ -1,4 +1,4 @@
-# ProyectoFinal_ML-FastApi-Streamlit
+# Proyecto para clasificar si una persona va a desarrollar cáncer en base a sus hábitos de vida
 Este proyecto se basa en el análisis de un database sobre distintos hábitos de vida y como influyen en la probabilidad de desarrollar cáncer, incluye el desarrollo y elección del modelo predictivo, la creación posterior de la api y el desarrollo de una app con Streamlit  en el cual tu puedes hacer el test y ver la probabilidad de desarrollar cáncer
 1. Podemos ver todo el desarrollo con ML en el fichero .ipynb en el cual se pueden ver todos los pasos dados y resultados obtenidos.
 2. En la parte final de este proyeto se procede a la obtención de la API dockerizada con Pycaret y FastAPI.
