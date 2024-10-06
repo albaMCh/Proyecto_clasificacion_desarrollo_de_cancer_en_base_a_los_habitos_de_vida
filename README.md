@@ -42,3 +42,5 @@ Clonar este repositorio
 2. (base)$: cd ProyectoFinal_ML_FastApi_Streamlit.git
 3. Ejecutar las aplicaciones. $ docker-compose up
 4. Y ve a http://localhost:8501
+## Si quieres realizar el formulario para ver los resultados desde aqui puedes hacerlo
+https://albamch-proyectofinal-ml-fastapi-streamli-frontendscript-cw7cs0.streamlit.app/
